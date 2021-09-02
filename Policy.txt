@@ -1,0 +1,22 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ec2:describeinstances"
+            ],
+            "Resource": "*",
+            "Condition": {
+            "StringEquals": {
+                "ec2:ResourceTag/group": "${aws:group}"
+            }
+        }
+        },
+        {
+            "Effect": "Allow",
+            "Action": "sns:Publish",
+            "Resource": "arn:aws:sns:us-east-1:433624884903:${aws:group}-sev*"
+        }
+    ]
+}
